@@ -125,6 +125,11 @@ class _WalletScreenWidgetState extends State<WalletScreenWidget>
     super.initState();
     // On page load action.
     SchedulerBinding.instance?.addPostFrameCallback((_) async {
+      await actions.authenticateLocally(
+        'Adds an extra layer of security when using the app.',
+        false,
+        false,
+      );
       info = await AddressINFOCall.call(
         address: valueOrDefault(currentUserDocument?.activeAddress, ''),
       );

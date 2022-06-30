@@ -10,23 +10,21 @@ import 'package:local_auth/local_auth.dart';
 
 Future<bool> authenticateLocally(
     String localizedReason, bool biometricOnly, bool stickyAuth) async {
-  try {
-    final localAuthentication = LocalAuthentication();
-    final isBiometricSupported = await localAuthentication.isDeviceSupported();
-    final canCheckBiometrics = await localAuthentication.canCheckBiometrics;
+  final localAuthentication = LocalAuthentication();
+  final isBiometricSupported = await localAuthentication.isDeviceSupported();
+  final canCheckBiometrics = await localAuthentication.canCheckBiometrics;
 
-    bool isAuthenticated = false;
+  bool isAuthenticated = false;
 
-    if (isBiometricSupported && canCheckBiometrics) {
-      isAuthenticated = await localAuthentication.authenticate(
-        localizedReason: localizedReason,
-        options: AuthenticationOptions(
-            biometricOnly: biometricOnly, stickyAuth: stickyAuth),
-      );
-    }
-
-    return isAuthenticated;
-  } catch (e) {
-    return false;
+  if (isBiometricSupported && canCheckBiometrics) {
+    isAuthenticated = await localAuthentication.authenticate(
+      localizedReason: localizedReason,
+      options: AuthenticationOptions(
+          biometricOnly: biometricOnly, stickyAuth: stickyAuth),
+    );
+  } else {
+    throw "isBiometricSupported: $isBiometricSupported, canCheckBiometrics: $canCheckBiometrics";
   }
+
+  return isAuthenticated;
 }
