@@ -463,7 +463,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                       onTap: () async {
                                         await actions.authenticateLocally(
                                           'Adds an extra layer of security when using the app.',
-                                          true,
+                                          false,
                                           false,
                                         );
                                       },
