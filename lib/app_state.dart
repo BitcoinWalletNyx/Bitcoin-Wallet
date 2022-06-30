@@ -29,6 +29,7 @@ class FFAppState {
     _bitPrice = prefs.getDouble('ff_bitPrice') ?? _bitPrice;
     _emailNotifications =
         prefs.getBool('ff_emailNotifications') ?? _emailNotifications;
+    _authEnabled = prefs.getBool('ff_authEnabled') ?? _authEnabled;
   }
 
   SharedPreferences prefs;
@@ -117,6 +118,15 @@ class FFAppState {
   }
 
   double emptyAmount = 1;
+
+  bool _authEnabled = false;
+  bool get authEnabled => _authEnabled;
+  set authEnabled(bool _value) {
+    _authEnabled = _value;
+    prefs.setBool('ff_authEnabled', _value);
+  }
+
+  bool copied = false;
 }
 
 LatLng _latLngFromString(String val) {
