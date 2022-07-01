@@ -536,24 +536,30 @@ class _SwapActivityScreenWidgetState extends State<SwapActivityScreenWidget> {
                   children: [
                     Icon(
                       Icons.search_rounded,
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme.of(context).customColor1,
                       size: 24,
                     ),
-                    InkWell(
-                      onTap: () async {
-                        await launchURL(
-                            'https://changenow.io/exchange/txs/${widget.transactionID}');
-                      },
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          '0ebkzrcu' /* Click to find your transaction... */,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(6, 0, 0, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          await launchURL(
+                              'https://changenow.io/exchange/txs/${widget.transactionID}');
+                        },
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            '0ebkzrcu' /* Click to find your transaction... */,
+                          ),
+                          textAlign: TextAlign.end,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'IBM Plex Sans',
+                                color:
+                                    FlutterFlowTheme.of(context).customColor1,
+                                fontWeight: FontWeight.w500,
+                              ),
                         ),
-                        textAlign: TextAlign.end,
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'IBM Plex Sans',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontWeight: FontWeight.w500,
-                            ),
                       ),
                     ),
                   ],
@@ -603,7 +609,7 @@ class _SwapActivityScreenWidgetState extends State<SwapActivityScreenWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    await Navigator.push(
+                                    await Navigator.pushAndRemoveUntil(
                                       context,
                                       PageTransition(
                                         type: PageTransitionType.bottomToTop,
@@ -628,6 +634,7 @@ class _SwapActivityScreenWidgetState extends State<SwapActivityScreenWidget> {
                                           txHash: widget.txHASH,
                                         ),
                                       ),
+                                      (r) => false,
                                     );
                                   },
                                   text: FFLocalizations.of(context).getText(

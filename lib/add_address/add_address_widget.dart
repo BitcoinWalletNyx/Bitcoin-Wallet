@@ -119,7 +119,7 @@ class _AddAddressWidgetState extends State<AddAddressWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     24, 24, 20, 24),
                                 prefixIcon: Icon(
-                                  Icons.recent_actors,
+                                  Icons.book,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   size: 20,
@@ -203,7 +203,7 @@ class _AddAddressWidgetState extends State<AddAddressWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     24, 24, 20, 24),
                                 prefixIcon: Icon(
-                                  Icons.recent_actors,
+                                  FFIcons.kbitcoin,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   size: 20,

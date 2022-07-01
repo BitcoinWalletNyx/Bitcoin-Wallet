@@ -125,15 +125,25 @@ class _WalletScreenWidgetState extends State<WalletScreenWidget>
     super.initState();
     // On page load action.
     SchedulerBinding.instance?.addPostFrameCallback((_) async {
-      await actions.authenticateLocally(
-        'Adds an extra layer of security when using the app.',
-        false,
-        false,
-      );
       info = await AddressINFOCall.call(
         address: valueOrDefault(currentUserDocument?.activeAddress, ''),
       );
       price = await BitcoinPriceCall.call();
+
+      final usersUpdateData = createUsersRecordData(
+        btc: FFAppState().bitBalance,
+        btcUSD: FFAppState().bitUSD,
+        btcPrice: FFAppState().bitPrice,
+        transactionsCount: getJsonField(
+          (info?.jsonBody ?? ''),
+          r'''$.n_tx''',
+        ),
+        unconfirmedBalance: functions.intToDouble(getJsonField(
+          (info?.jsonBody ?? ''),
+          r'''$.unconfirmed_balance''',
+        )),
+      );
+      await currentUserReference.update(usersUpdateData);
       setState(
           () => FFAppState().bitBalance = functions.intToDouble(getJsonField(
                 (info?.jsonBody ?? ''),
@@ -152,21 +162,6 @@ class _WalletScreenWidgetState extends State<WalletScreenWidget>
             (price?.jsonBody ?? ''),
             r'''$.USD''',
           ));
-
-      final usersUpdateData = createUsersRecordData(
-        btc: FFAppState().bitBalance,
-        btcUSD: FFAppState().bitUSD,
-        btcPrice: FFAppState().bitPrice,
-        transactionsCount: getJsonField(
-          (info?.jsonBody ?? ''),
-          r'''$.n_tx''',
-        ),
-        unconfirmedBalance: functions.intToDouble(getJsonField(
-          (info?.jsonBody ?? ''),
-          r'''$.unconfirmed_balance''',
-        )),
-      );
-      await currentUserReference.update(usersUpdateData);
     });
 
     startPageLoadAnimations(

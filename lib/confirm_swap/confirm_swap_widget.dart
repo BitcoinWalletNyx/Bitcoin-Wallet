@@ -606,12 +606,13 @@ class _ConfirmSwapWidgetState extends State<ConfirmSwapWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 35),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await Navigator.push(
+                                  await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => NavBarPage(
                                           initialPage: 'walletScreen'),
                                     ),
+                                    (r) => false,
                                   );
                                 },
                                 text: FFLocalizations.of(context).getText(
