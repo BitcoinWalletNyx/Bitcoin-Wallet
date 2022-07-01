@@ -189,7 +189,7 @@ class _ImportWalletWidgetState extends State<ImportWalletWidget> {
                     contentPadding:
                         EdgeInsetsDirectional.fromSTEB(24, 24, 20, 24),
                     prefixIcon: Icon(
-                      Icons.recent_actors,
+                      Icons.account_balance_wallet,
                       color: FlutterFlowTheme.of(context).secondaryText,
                       size: 20,
                     ),
@@ -270,8 +270,8 @@ class _ImportWalletWidgetState extends State<ImportWalletWidget> {
                         fontFamily: 'IBM Plex Sans',
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                        lineHeight: 5,
                       ),
-                  maxLines: 5,
                 ),
               ),
               Expanded(

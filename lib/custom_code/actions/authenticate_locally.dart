@@ -8,23 +8,26 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 import 'package:local_auth/local_auth.dart';
 
-Future<bool> authenticateLocally(
+Future<String> authenticateLocally(
     String localizedReason, bool biometricOnly, bool stickyAuth) async {
-  final localAuthentication = LocalAuthentication();
-  final isBiometricSupported = await localAuthentication.isDeviceSupported();
-  final canCheckBiometrics = await localAuthentication.canCheckBiometrics;
+  try {
+    final localAuthentication = LocalAuthentication();
+    final isBiometricSupported = await localAuthentication.isDeviceSupported();
+    final canCheckBiometrics = await localAuthentication.canCheckBiometrics;
 
-  bool isAuthenticated = false;
+    bool isAuthenticated = false;
 
-  if (isBiometricSupported && canCheckBiometrics) {
-    isAuthenticated = await localAuthentication.authenticate(
-      localizedReason: localizedReason,
-      options: AuthenticationOptions(
-          biometricOnly: biometricOnly, stickyAuth: stickyAuth),
-    );
-  } else {
-    throw "isBiometricSupported: $isBiometricSupported, canCheckBiometrics: $canCheckBiometrics";
+    if (isBiometricSupported && canCheckBiometrics) {
+      isAuthenticated = await localAuthentication.authenticate(
+        localizedReason: localizedReason,
+        options: AuthenticationOptions(
+            biometricOnly: biometricOnly, stickyAuth: stickyAuth),
+      );
+      return "It worked!";
+    } else {
+      throw "isBiometricSupported: $isBiometricSupported, canCheckBiometrics: $canCheckBiometrics";
+    }
+  } catch (e) {
+    return e.toString();
   }
-
-  return isAuthenticated;
 }

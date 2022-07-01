@@ -12,7 +12,6 @@ import '../help_screen/help_screen_widget.dart';
 import '../notification_center_screen/notification_center_screen_widget.dart';
 import '../user_wallets/user_wallets_widget.dart';
 import '../welcome_screen/welcome_screen_widget.dart';
-import '../custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -422,121 +421,6 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 0, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.fingerprint_rounded,
-                                        color: Color(0xFF3969D2),
-                                        size: 30,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15, 10, 0, 10),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await actions.authenticateLocally(
-                                          'Adds an extra layer of security when using the app.',
-                                          false,
-                                          false,
-                                        );
-                                      },
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            FFLocalizations.of(context).getText(
-                                              '7av9ob6x' /* Enable Auth  */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'IBM Plex Sans',
-                                                  fontSize: 17,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                          Text(
-                                            FFLocalizations.of(context).getText(
-                                              'b6t32haw' /* Adds an extra layer of securit... */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'IBM Plex Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 10, 0),
-                                  child: ToggleIcon(
-                                    onPressed: () async {
-                                      setState(() => FFAppState().authEnabled =
-                                          !FFAppState().authEnabled);
-                                    },
-                                    value: FFAppState().authEnabled,
-                                    onIcon: Icon(
-                                      Icons.check_box,
-                                      color: FlutterFlowTheme.of(context)
-                                          .navBarColor,
-                                      size: 24,
-                                    ),
-                                    offIcon: Icon(
-                                      Icons.check_box_outline_blank,
-                                      color: Color(0x9757636C),
-                                      size: 25,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -557,7 +441,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 7, 5, 0),
+                                      5, 0, 5, 0),
                                   child: InkWell(
                                     onTap: () async {
                                       await Navigator.push(
@@ -591,7 +475,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 0, 0, 0),
+                                                    15, 15, 0, 0),
                                             child: InkWell(
                                               onTap: () async {
                                                 await Navigator.push(
@@ -694,7 +578,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 5, 7),
+                                      5, 0, 5, 0),
                                   child: InkWell(
                                     onTap: () async {
                                       await Navigator.push(
@@ -731,7 +615,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 0, 0, 0),
+                                                    15, 0, 0, 15),
                                             child: InkWell(
                                               onTap: () async {
                                                 await Navigator.push(
@@ -851,7 +735,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 10, 5, 0),
+                                      5, 0, 5, 0),
                                   child: InkWell(
                                     onTap: () async {
                                       await Navigator.push(
@@ -885,7 +769,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 0, 0, 0),
+                                                    15, 15, 0, 0),
                                             child: InkWell(
                                               onTap: () async {
                                                 await Navigator.push(
@@ -990,7 +874,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 5, 7),
+                                      5, 0, 5, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -1015,7 +899,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  15, 0, 0, 0),
+                                                  15, 0, 0, 15),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -1117,7 +1001,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 7, 5, 0),
+                                      5, 0, 5, 0),
                                   child: InkWell(
                                     onTap: () async {
                                       await Navigator.push(
@@ -1150,7 +1034,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 0, 0, 0),
+                                                    15, 15, 0, 0),
                                             child: InkWell(
                                               onTap: () async {
                                                 await Navigator.push(
@@ -1388,7 +1272,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 5, 7),
+                                      5, 0, 5, 0),
                                   child: InkWell(
                                     onTap: () async {
                                       await Navigator.push(
@@ -1421,7 +1305,7 @@ class _SettingsScreenWidgetState extends State<SettingsScreenWidget>
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 0, 0, 0),
+                                                    15, 0, 0, 15),
                                             child: InkWell(
                                               onTap: () async {
                                                 await Navigator.push(
