@@ -46,6 +46,12 @@ abstract class FlutterFlowTheme {
   Color textSuccessBackground;
   Color navBarColor;
   Color background;
+  Color warningBackground;
+  Color mnemonicBorderColor;
+  Color warningBtnText;
+  Color customColor3;
+  Color customColor4;
+  Color white;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'IBM Plex Sans',
@@ -109,6 +115,12 @@ class LightModeTheme extends FlutterFlowTheme {
   Color textSuccessBackground = Color(0xFFFFFFFF);
   Color navBarColor = Color(0xFF4B39EF);
   Color background = Color(0xFF1D2429);
+  Color warningBackground = Color(0xFFF3E4E4);
+  Color mnemonicBorderColor = Color(0x6095A1AC);
+  Color warningBtnText = Color(0xFFB34A4A);
+  Color customColor3 = Color(0xFFDF3F3F);
+  Color customColor4 = Color(0xFF090F13);
+  Color white = Color(0xFFFFFFFF);
 }
 
 class DarkModeTheme extends FlutterFlowTheme {
@@ -129,6 +141,12 @@ class DarkModeTheme extends FlutterFlowTheme {
   Color textSuccessBackground = Color(0xFF090F13);
   Color navBarColor = Color(0xFFFFFFFF);
   Color background = Color(0xFF1D2429);
+  Color warningBackground = Color(0xFF3A2426);
+  Color mnemonicBorderColor = Color(0x484B39EF);
+  Color warningBtnText = Color(0xFFE35858);
+  Color customColor3 = Color(0xFFDF3F3F);
+  Color customColor4 = Color(0xFF090F13);
+  Color white = Color(0xFFFFFFFF);
 }
 
 extension TextStyleHelper on TextStyle {

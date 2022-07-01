@@ -301,6 +301,7 @@ class _ImportWalletWidgetState extends State<ImportWalletWidget> {
                                     style: TextStyle(
                                       color: Color(0xFFB34949),
                                       fontWeight: FontWeight.w500,
+                                      fontSize: 16,
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 1500),
@@ -392,11 +393,9 @@ class _ImportWalletWidgetState extends State<ImportWalletWidget> {
                             );
                             await Navigator.pushAndRemoveUntil(
                               context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 300),
-                                reverseDuration: Duration(milliseconds: 300),
-                                child: NavBarPage(initialPage: 'walletScreen'),
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    NavBarPage(initialPage: 'walletScreen'),
                               ),
                               (r) => false,
                             );

@@ -66,7 +66,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: Color(0xFFF1F4F8),
+          color: FlutterFlowTheme.of(context).primaryBackground,
           child: Center(
             child: Builder(
               builder: (context) => Image.asset(
@@ -90,15 +90,15 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'importWallet': (data) async => ImportWalletWidget(
         qrDara: getParameter(data, 'qrDara'),
       ),
-  'mnemonicBackup': (data) async => MnemonicBackupWidget(),
   'loginScreen': (data) async => LoginScreenWidget(),
+  'mnemonicBackup': (data) async => MnemonicBackupWidget(),
   'forgotPassword': (data) async => ForgotPasswordWidget(),
+  'verifySecretPhrase': (data) async => VerifySecretPhraseWidget(),
   'WaitingScreen': (data) async => WaitingScreenWidget(
         btcPrice: getParameter(data, 'btcPrice'),
         btcBalance: getParameter(data, 'btcBalance'),
       ),
   'welcomeScreen': (data) async => WelcomeScreenWidget(),
-  'nonCustdialWalletScreen': (data) async => NonCustdialWalletScreenWidget(),
   'createWallet': (data) async => CreateWalletWidget(),
   'swapScreen': (data) async => NavBarPage(initialPage: 'swapScreen'),
   'swapStepOne': (data) async => SwapStepOneWidget(
@@ -161,10 +161,13 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
         createdAt: getParameter(data, 'createdAt'),
       ),
   'settingsScreen': (data) async => NavBarPage(initialPage: 'settingsScreen'),
+  'bugBounty': (data) async => BugBountyWidget(),
   'feedbackScreen': (data) async => FeedbackScreenWidget(),
+  'SuccessFeedback': (data) async => SuccessFeedbackWidget(),
   'helpScreen': (data) async => HelpScreenWidget(),
-  'addressesBook': (data) async => AddressesBookWidget(),
+  'SuccessHelp': (data) async => SuccessHelpWidget(),
   'addAddress': (data) async => AddAddressWidget(),
+  'addressesBook': (data) async => AddressesBookWidget(),
   'aboutUS': (data) async => AboutUSWidget(),
   'addressAddedSuccess': (data) async => AddressAddedSuccessWidget(),
   'notificationCenterScreen': (data) async => NotificationCenterScreenWidget(),

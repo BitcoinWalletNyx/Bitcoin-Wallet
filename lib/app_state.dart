@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/lat_lng.dart';
+import 'dart:convert';
 
 class FFAppState {
   static final FFAppState _instance = FFAppState._internal();
@@ -127,6 +128,14 @@ class FFAppState {
   }
 
   bool copied = false;
+
+  List<dynamic> verifySecretPhrase = [];
+
+  double changeAmount = 0.0;
+
+  double networkFee = 0.0;
+
+  String sendAmount = '';
 }
 
 LatLng _latLngFromString(String val) {

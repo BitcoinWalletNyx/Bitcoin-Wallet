@@ -10,6 +10,7 @@ import 'schema/user_wallets_record.dart';
 import 'schema/user_activity_record.dart';
 import 'schema/address_book_record.dart';
 import 'schema/user_info_record.dart';
+import 'schema/support_team_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -23,6 +24,7 @@ export 'schema/user_wallets_record.dart';
 export 'schema/user_activity_record.dart';
 export 'schema/address_book_record.dart';
 export 'schema/user_info_record.dart';
+export 'schema/support_team_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -282,6 +284,51 @@ Future<FFFirestorePage<UserInfoRecord>> queryUserInfoRecordPage({
     queryCollectionPage(
       UserInfoRecord.collection(parent),
       UserInfoRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query SupportTeamRecords (as a Stream and as a Future).
+Stream<List<SupportTeamRecord>> querySupportTeamRecord({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SupportTeamRecord.collection(parent),
+      SupportTeamRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SupportTeamRecord>> querySupportTeamRecordOnce({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SupportTeamRecord.collection(parent),
+      SupportTeamRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SupportTeamRecord>> querySupportTeamRecordPage({
+  DocumentReference parent,
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      SupportTeamRecord.collection(parent),
+      SupportTeamRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

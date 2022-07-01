@@ -7,3 +7,4 @@ export 'text_field_empty_booleann.dart' show textFieldEmptyBooleann;
 export 'if_address_e_q_q.dart' show ifAddressEQQ;
 export 'amount_greater.dart' show amountGreater;
 export 'authenticate_locally.dart' show authenticateLocally;
+export 'total_amount.dart' show totalAmount;

@@ -192,14 +192,12 @@ class _SuccessPaymentWidgetState extends State<SuccessPaymentWidget> {
                             options: FFButtonOptions(
                               width: 170,
                               height: 50,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              color: FlutterFlowTheme.of(context).customColor1,
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle2
                                   .override(
                                     fontFamily: 'IBM Plex Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: FlutterFlowTheme.of(context).btnText,
                                   ),
                               elevation: 0,
                               borderSide: BorderSide(

@@ -4,13 +4,13 @@ export 'choose_wallet_label/choose_wallet_label_widget.dart'
     show ChooseWalletLabelWidget;
 export 'sync_wallet/sync_wallet_widget.dart' show SyncWalletWidget;
 export 'import_wallet/import_wallet_widget.dart' show ImportWalletWidget;
-export 'mnemonic_backup/mnemonic_backup_widget.dart' show MnemonicBackupWidget;
 export 'login_screen/login_screen_widget.dart' show LoginScreenWidget;
+export 'mnemonic_backup/mnemonic_backup_widget.dart' show MnemonicBackupWidget;
 export 'forgot_password/forgot_password_widget.dart' show ForgotPasswordWidget;
+export 'verify_secret_phrase/verify_secret_phrase_widget.dart'
+    show VerifySecretPhraseWidget;
 export 'waiting_screen/waiting_screen_widget.dart' show WaitingScreenWidget;
 export 'welcome_screen/welcome_screen_widget.dart' show WelcomeScreenWidget;
-export 'non_custdial_wallet_screen/non_custdial_wallet_screen_widget.dart'
-    show NonCustdialWalletScreenWidget;
 export 'wallet_screen/wallet_screen_widget.dart' show WalletScreenWidget;
 export 'create_wallet/create_wallet_widget.dart' show CreateWalletWidget;
 export 'swap_screen/swap_screen_widget.dart' show SwapScreenWidget;
@@ -21,10 +21,14 @@ export 'swap_activity_screen/swap_activity_screen_widget.dart'
     show SwapActivityScreenWidget;
 export 'completed_swap/completed_swap_widget.dart' show CompletedSwapWidget;
 export 'settings_screen/settings_screen_widget.dart' show SettingsScreenWidget;
+export 'bug_bounty/bug_bounty_widget.dart' show BugBountyWidget;
 export 'feedback_screen/feedback_screen_widget.dart' show FeedbackScreenWidget;
+export 'success_feedback/success_feedback_widget.dart'
+    show SuccessFeedbackWidget;
 export 'help_screen/help_screen_widget.dart' show HelpScreenWidget;
-export 'addresses_book/addresses_book_widget.dart' show AddressesBookWidget;
+export 'success_help/success_help_widget.dart' show SuccessHelpWidget;
 export 'add_address/add_address_widget.dart' show AddAddressWidget;
+export 'addresses_book/addresses_book_widget.dart' show AddressesBookWidget;
 export 'about_u_s/about_u_s_widget.dart' show AboutUSWidget;
 export 'address_added_success/address_added_success_widget.dart'
     show AddressAddedSuccessWidget;

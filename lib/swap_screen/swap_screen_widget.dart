@@ -230,7 +230,6 @@ class _SwapScreenWidgetState extends State<SwapScreenWidget>
                           ),
                           child: Container(
                             width: double.infinity,
-                            height: 70,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,

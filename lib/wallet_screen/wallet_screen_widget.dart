@@ -202,11 +202,8 @@ class _WalletScreenWidgetState extends State<WalletScreenWidget>
             onPressed: () async {
               await Navigator.push(
                 context,
-                PageTransition(
-                  type: PageTransitionType.rightToLeft,
-                  duration: Duration(milliseconds: 300),
-                  reverseDuration: Duration(milliseconds: 300),
-                  child: UserWalletsWidget(),
+                MaterialPageRoute(
+                  builder: (context) => UserWalletsWidget(),
                 ),
               );
             },
@@ -460,11 +457,8 @@ class _WalletScreenWidgetState extends State<WalletScreenWidget>
                           onPressed: () async {
                             await Navigator.push(
                               context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 300),
-                                reverseDuration: Duration(milliseconds: 300),
-                                child: ReceiveBitcoinWidget(),
+                              MaterialPageRoute(
+                                builder: (context) => ReceiveBitcoinWidget(),
                               ),
                             );
                           },
@@ -504,20 +498,13 @@ class _WalletScreenWidgetState extends State<WalletScreenWidget>
                           onPressed: () async {
                             await Navigator.push(
                               context,
-                              PageTransition(
-                                type: PageTransitionType.bottomToTop,
-                                duration: Duration(milliseconds: 300),
-                                reverseDuration: Duration(milliseconds: 300),
-                                child: SendBitcoinWidget(
+                              MaterialPageRoute(
+                                builder: (context) => SendBitcoinWidget(
                                   btcPrice: getJsonField(
                                     (price?.jsonBody ?? ''),
                                     r'''$.USD''',
                                   ),
-                                  btcBalance:
-                                      functions.intToDouble(getJsonField(
-                                    (info?.jsonBody ?? ''),
-                                    r'''$.final_balance''',
-                                  )),
+                                  btcBalance: FFAppState().bitBalance,
                                   unconfirmedBalance:
                                       functions.intToDouble(getJsonField(
                                     (info?.jsonBody ?? ''),

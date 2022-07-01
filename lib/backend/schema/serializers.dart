@@ -6,6 +6,7 @@ import 'user_wallets_record.dart';
 import 'user_activity_record.dart';
 import 'address_book_record.dart';
 import 'user_info_record.dart';
+import 'support_team_record.dart';
 
 import 'index.dart';
 
@@ -22,6 +23,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   UserActivityRecord,
   AddressBookRecord,
   UserInfoRecord,
+  SupportTeamRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

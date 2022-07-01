@@ -389,14 +389,12 @@ class _CreateWalletWidgetState extends State<CreateWalletWidget> {
                       .doc(user.uid)
                       .update(usersCreateData);
 
-                  await Navigator.push(
+                  await Navigator.pushAndRemoveUntil(
                     context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      duration: Duration(milliseconds: 300),
-                      reverseDuration: Duration(milliseconds: 300),
-                      child: WalletSetupWidget(),
+                    MaterialPageRoute(
+                      builder: (context) => WalletSetupWidget(),
                     ),
+                    (r) => false,
                   );
                 },
                 text: FFLocalizations.of(context).getText(

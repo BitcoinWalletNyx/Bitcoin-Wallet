@@ -311,3 +311,43 @@ class MinimumExchangeAmountCall {
     );
   }
 }
+
+class SendBitcoinForOneReciepientCall {
+  static Future<ApiCallResponse> call({
+    String changeAddress = '',
+    String changeKey = '',
+    String toAddress = '',
+    double toAmount,
+  }) {
+    final body = '''
+{
+  "fromAddress": [
+    {
+      "address": "${changeAddress}",
+      "privateKey": "${changeKey}"
+    }
+  ],
+  "to": [
+    {
+      "address": "${toAddress}",
+      "value": ${toAmount}
+    }
+  ]
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'sendBitcoinForOneReciepient',
+      apiUrl: 'https://api-eu1.tatum.io/v3/bitcoin/transaction',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'changeAddress': changeAddress,
+        'changeKey': changeKey,
+        'toAddress': toAddress,
+        'toAmount': toAmount,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}

@@ -516,7 +516,8 @@ class _SuccessPaymentCopyWidgetState extends State<SuccessPaymentCopyWidget> {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     PageTransition(
-                                      type: PageTransitionType.bottomToTop,
+                                      type: PageTransitionType.scale,
+                                      alignment: Alignment.bottomCenter,
                                       duration: Duration(milliseconds: 300),
                                       reverseDuration:
                                           Duration(milliseconds: 300),

@@ -226,3 +226,17 @@ double ifemptyReturnOne(
   }
   return amount * price;
 }
+
+dynamic back(
+  double sendAmount,
+  double networkFee,
+  double balance,
+) {
+  // return sendAmount minus NetworkFee as JSON, and return balance minus networkFee as JSON
+  return {
+    'sendAmount': sendAmount - networkFee / 100000000,
+    'changeAmount': balance - sendAmount - networkFee / 100000000,
+    'networkFee': networkFee,
+    'balance': balance
+  };
+}

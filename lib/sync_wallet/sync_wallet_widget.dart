@@ -105,11 +105,8 @@ class _SyncWalletWidgetState extends State<SyncWalletWidget> {
       await currentUserReference.update(usersUpdateData);
       await Navigator.pushAndRemoveUntil(
         context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          duration: Duration(milliseconds: 300),
-          reverseDuration: Duration(milliseconds: 300),
-          child: MnemonicBackupWidget(),
+        MaterialPageRoute(
+          builder: (context) => MnemonicBackupWidget(),
         ),
         (r) => false,
       );

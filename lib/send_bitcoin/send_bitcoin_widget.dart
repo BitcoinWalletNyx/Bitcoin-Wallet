@@ -711,14 +711,9 @@ class _SendBitcoinWidgetState extends State<SendBitcoinWidget> {
 
                                           await Navigator.push(
                                             context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              duration:
-                                                  Duration(milliseconds: 300),
-                                              reverseDuration:
-                                                  Duration(milliseconds: 300),
-                                              child: ConfirmTrasnactionWidget(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ConfirmTrasnactionWidget(
                                                 amount: functions
                                                     .convertStringtoDouble(
                                                         amountController.text),

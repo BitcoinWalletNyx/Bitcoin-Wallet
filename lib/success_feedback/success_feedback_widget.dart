@@ -7,15 +7,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-class AddressAddedSuccessWidget extends StatefulWidget {
-  const AddressAddedSuccessWidget({Key key}) : super(key: key);
+class SuccessFeedbackWidget extends StatefulWidget {
+  const SuccessFeedbackWidget({Key key}) : super(key: key);
 
   @override
-  _AddressAddedSuccessWidgetState createState() =>
-      _AddressAddedSuccessWidgetState();
+  _SuccessFeedbackWidgetState createState() => _SuccessFeedbackWidgetState();
 }
 
-class _AddressAddedSuccessWidgetState extends State<AddressAddedSuccessWidget> {
+class _SuccessFeedbackWidgetState extends State<SuccessFeedbackWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -50,7 +49,7 @@ class _AddressAddedSuccessWidgetState extends State<AddressAddedSuccessWidget> {
               ),
               Text(
                 FFLocalizations.of(context).getText(
-                  '0v55w06v' /* Congrats! */,
+                  'wwuh54vg' /* Thank you! 💙 */,
                 ),
                 style: FlutterFlowTheme.of(context).title2.override(
                       fontFamily: 'IBM Plex Sans',
@@ -62,12 +61,12 @@ class _AddressAddedSuccessWidgetState extends State<AddressAddedSuccessWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: Text(
                   FFLocalizations.of(context).getText(
-                    'n4qh17cp' /* Added to address book successf... */,
+                    '53gqbfaa' /* Your feedback has been sent to... */,
                   ),
                   style: FlutterFlowTheme.of(context).subtitle2.override(
                         fontFamily: 'IBM Plex Sans',
                         color: FlutterFlowTheme.of(context).primaryBtnText,
-                        fontSize: 20,
+                        fontSize: 19,
                         fontWeight: FontWeight.normal,
                       ),
                 ),
@@ -76,7 +75,6 @@ class _AddressAddedSuccessWidgetState extends State<AddressAddedSuccessWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
                       child: Padding(
@@ -95,7 +93,7 @@ class _AddressAddedSuccessWidgetState extends State<AddressAddedSuccessWidget> {
                             );
                           },
                           text: FFLocalizations.of(context).getText(
-                            'sl9aibep' /* Continue */,
+                            'e3qflwxm' /* Continue */,
                           ),
                           options: FFButtonOptions(
                             width: 170,

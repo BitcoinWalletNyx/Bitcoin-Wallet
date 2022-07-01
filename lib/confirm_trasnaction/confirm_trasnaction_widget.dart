@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../success_payment/success_payment_widget.dart';
+import '../custom_code/actions/index.dart' as actions;
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -35,7 +36,9 @@ class ConfirmTrasnactionWidget extends StatefulWidget {
 }
 
 class _ConfirmTrasnactionWidgetState extends State<ConfirmTrasnactionWidget> {
-  ApiCallResponse sendPaymentAPI;
+  ApiCallResponse sendBitcoin;
+  ApiCallResponse sendForOne;
+  dynamic customAction;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -467,67 +470,165 @@ class _ConfirmTrasnactionWidgetState extends State<ConfirmTrasnactionWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             var _shouldSetState = false;
-                            sendPaymentAPI =
-                                await SendBitcoinTransactionCall.call(
-                              senderAddress: valueOrDefault(
-                                  currentUserDocument?.activeAddress, ''),
-                              senderKey: valueOrDefault(
-                                  currentUserDocument?.activeKey, ''),
-                              toAddress: widget.to,
-                              amount: functions.sendBitcoinTransaction(
-                                  widget.amount,
-                                  valueOrDefault(
-                                      currentUserDocument?.favNetworkFee, 0)),
-                              changeAddress: valueOrDefault(
-                                  currentUserDocument?.activeAddress, ''),
-                              changeAmount: functions.changeAddressAmount(
-                                  valueOrDefault(currentUserDocument?.btc, 0.0),
-                                  widget.amount),
+                            customAction = await actions.totalAmount(
+                              widget.amount,
+                              valueOrDefault(
+                                      currentUserDocument?.favNetworkFee, 0)
+                                  .toDouble(),
+                              valueOrDefault(currentUserDocument?.btc, 0.0),
                             );
                             _shouldSetState = true;
-                            if ((sendPaymentAPI?.succeeded ?? true)) {
-                              await Navigator.pushAndRemoveUntil(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.scale,
-                                  alignment: Alignment.bottomCenter,
-                                  duration: Duration(milliseconds: 300),
-                                  reverseDuration: Duration(milliseconds: 300),
-                                  child: SuccessPaymentWidget(
-                                    btcAmount: widget.amount,
-                                    usdBtcAmount:
-                                        functions.multiplyWithoutRules(
-                                            widget.amount,
-                                            valueOrDefault(
-                                                currentUserDocument?.btcPrice,
-                                                0.0)),
-                                    toAddress: widget.to,
-                                    txHash: getJsonField(
-                                      (sendPaymentAPI?.jsonBody ?? ''),
-                                      r'''$.txId''',
-                                    ).toString(),
-                                  ),
+                            setState(
+                                () => FFAppState().changeAmount = getJsonField(
+                                      customAction,
+                                      r'''$.changeAmount''',
+                                    ));
+                            setState(() => FFAppState().networkFee =
+                                functions.intToDouble(valueOrDefault(
+                                    currentUserDocument?.favNetworkFee, 0)));
+                            setState(
+                                () => FFAppState().sendAmount = getJsonField(
+                                      customAction,
+                                      r'''$.sendAmount''',
+                                    ).toString());
+                            if ((FFAppState().changeAmount) < 0.00003) {
+                              sendForOne =
+                                  await SendBitcoinForOneReciepientCall.call(
+                                changeAddress: valueOrDefault(
+                                    currentUserDocument?.activeAddress, ''),
+                                changeKey: valueOrDefault(
+                                    currentUserDocument?.activeKey, ''),
+                                toAddress: widget.to,
+                                toAmount: getJsonField(
+                                  customAction,
+                                  r'''$.sendAmount''',
                                 ),
-                                (r) => false,
                               );
+                              _shouldSetState = true;
+                              if ((sendForOne?.succeeded ?? true)) {
+                                await Navigator.pushAndRemoveUntil(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                    duration: Duration(milliseconds: 300),
+                                    reverseDuration:
+                                        Duration(milliseconds: 300),
+                                    child: SuccessPaymentWidget(
+                                      btcAmount: getJsonField(
+                                        customAction,
+                                        r'''$.sendAmount''',
+                                      ),
+                                      usdBtcAmount: functions.multiply(
+                                          getJsonField(
+                                            customAction,
+                                            r'''$.sendAmonut''',
+                                          ),
+                                          valueOrDefault(
+                                              currentUserDocument?.btcUSD,
+                                              0.0)),
+                                      toAddress: widget.to,
+                                      txHash: getJsonField(
+                                        (sendForOne?.jsonBody ?? ''),
+                                        r'''$.txId''',
+                                      ).toString(),
+                                    ),
+                                  ),
+                                  (r) => false,
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Invalid Transaction, try again',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .warningBtnText,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 1500),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .warningBackground,
+                                  ),
+                                );
+                              }
+
                               if (_shouldSetState) setState(() {});
                               return;
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Invalid transaction, Try again.',
-                                    style: GoogleFonts.getFont(
-                                      'IBM Plex Sans',
-                                      color: Color(0xFFB34949),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  duration: Duration(milliseconds: 1500),
-                                  backgroundColor: Color(0xFFF5E5E4),
+                              sendBitcoin =
+                                  await SendBitcoinTransactionCall.call(
+                                senderAddress: valueOrDefault(
+                                    currentUserDocument?.activeKey, ''),
+                                senderKey: valueOrDefault(
+                                    currentUserDocument?.activeKey, ''),
+                                toAddress: widget.to,
+                                amount: getJsonField(
+                                  customAction,
+                                  r'''$.sendAmonut''',
+                                ),
+                                changeAddress: valueOrDefault(
+                                    currentUserDocument?.activeAddress, ''),
+                                changeAmount: getJsonField(
+                                  customAction,
+                                  r'''$.changeAmount''',
                                 ),
                               );
+                              _shouldSetState = true;
+                              if ((sendBitcoin?.succeeded ?? true)) {
+                                await Navigator.pushAndRemoveUntil(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                    duration: Duration(milliseconds: 300),
+                                    reverseDuration:
+                                        Duration(milliseconds: 300),
+                                    child: SuccessPaymentWidget(
+                                      btcAmount: getJsonField(
+                                        customAction,
+                                        r'''$.sendAmount''',
+                                      ),
+                                      usdBtcAmount: functions.multiply(
+                                          getJsonField(
+                                            customAction,
+                                            r'''$.sendAmount''',
+                                          ),
+                                          valueOrDefault(
+                                              currentUserDocument?.btcPrice,
+                                              0.0)),
+                                      toAddress: widget.to,
+                                      txHash: getJsonField(
+                                        (sendBitcoin?.jsonBody ?? ''),
+                                        r'''$.txId''',
+                                      ).toString(),
+                                    ),
+                                  ),
+                                  (r) => false,
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Invalid Transaction, try again',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .warningBtnText,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 1500),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .warningBackground,
+                                  ),
+                                );
+                              }
+
                               if (_shouldSetState) setState(() {});
                               return;
                             }

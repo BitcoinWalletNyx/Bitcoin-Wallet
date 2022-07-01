@@ -3,7 +3,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_screen/login_screen_widget.dart';
-import '../non_custdial_wallet_screen/non_custdial_wallet_screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -116,18 +115,8 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                                   ),
                                   InkWell(
                                     onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.scale,
-                                          alignment: Alignment.bottomCenter,
-                                          duration: Duration(milliseconds: 300),
-                                          reverseDuration:
-                                              Duration(milliseconds: 300),
-                                          child:
-                                              NonCustdialWalletScreenWidget(),
-                                        ),
-                                      );
+                                      await launchURL(
+                                          'https://medium.com/@lauraSmithGrph/custodial-vs-non-custodial-wallets-understanding-the-difference-points-cd7f47b4f13b');
                                     },
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -138,7 +127,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                                           .override(
                                             fontFamily: 'IBM Plex Sans',
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                                .customColor1,
                                             fontSize: 16,
                                           ),
                                     ),
@@ -248,7 +237,7 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                                         Expanded(
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              '9gi3zvwr' /* Swap +10 assets like ETH, BCH,... */,
+                                              '9gi3zvwr' /* Swap +28 assets like ETH, BCH,... */,
                                             ),
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
@@ -309,11 +298,8 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                   onPressed: () async {
                     await Navigator.push(
                       context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        duration: Duration(milliseconds: 300),
-                        reverseDuration: Duration(milliseconds: 300),
-                        child: CreateWalletWidget(),
+                      MaterialPageRoute(
+                        builder: (context) => CreateWalletWidget(),
                       ),
                     );
                   },
@@ -344,11 +330,8 @@ class _WelcomeScreenWidgetState extends State<WelcomeScreenWidget> {
                   onPressed: () async {
                     await Navigator.push(
                       context,
-                      PageTransition(
-                        type: PageTransitionType.bottomToTop,
-                        duration: Duration(milliseconds: 300),
-                        reverseDuration: Duration(milliseconds: 300),
-                        child: LoginScreenWidget(),
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreenWidget(),
                       ),
                     );
                   },
